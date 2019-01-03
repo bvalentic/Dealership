@@ -5,25 +5,39 @@
 
 <h2>Car List</h2>
 
+@if (ViewBag.CarList != null)
+{
+
 <h4>The cars currently available at the dealership:</h4>
 
-<table>
-    <tr>
-        <th>Year:</th>
-        <th>Make:</th>
-        <th>Model:</th>
-        <th>Color:</th>
-        <th>VIN:</th>
-    </tr>
-    @foreach (var i in ViewBag.CarList["cars"])
-    {
-        <tr>
-            <td>@i["Year"]</td>
-            <td>@i["Make"]</td>
-            <td>@i["Model"]</td>
-            <td>@i["Color"]</td>
-            <td>@i["VIN"]</td>
+<div class="table col-sm-6">
+    <table class="table-bordered col-lg-6">
+        <tr class="">
+            <th class="col-sm-1">Year:</th>
+            <th class="col-sm-1">Make:</th>
+            <th class="col-sm-2">Model:</th>
+            <th class="col-sm-1">Color:</th>
+            <th class="col-sm-1">VIN:</th>
         </tr>
-    }
-</table>
+        @foreach (var car in ViewBag.CarList["cars"])
+        {
+            <tr class="">
+                <td class="col-sm-1">@car["Year"]</td>
+                <td class="col-sm-1">@car["Make"]</td>
+                <td class="col-sm-2">@car["Model"]</td>
+                <td class="col-sm-1">@car["Color"]</td>
+                <td class="col-sm-1">@car["VIN"]</td>
+            </tr>
+        }
 
+    </table>
+</div>
+}
+
+@if (ViewBag.CarList == null)
+{
+    <h4>We're sorry! Something went wrong with our database.</h4>
+    <h5>Please try again at a later time.</h5>
+}
+
+<a href="~/Home/Index">Back to home</a>
