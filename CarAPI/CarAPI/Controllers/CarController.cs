@@ -13,35 +13,19 @@ namespace CarAPI.Controllers
 
         // GET list of cars
         [HttpGet]
+
+        ///<summary>
+        ///Gets list of cars from our proprietary car database
+        ///</summary>        
         public List<Car> GetCars()
         {
             return DB.Cars.ToList();
         }
 
-        // GET car by VIN
-
-        [HttpGet]
-        public Car GetCarByVIN(int? VIN)
-        {
-            if (VIN != null)
-            {
-                return DB.Cars.Find(VIN);
-            }
-            else return null;
-        }
-
-        // GET car by make
-
-        [HttpGet]
-        public List<Car> GetCarByMake(string make)
-        {
-            return DB.Cars.Where(c => c.Make == make).ToList();
-        }
-
-        // GET cars by search criteria (the real one)
+        // GET cars by search criteria (make, model, color, year range)
         [HttpGet]
         public List<Car> FoundCars(int? vin, string make, string model, int? yearFrom, int? yearTo, string color)
-        {
+        {//creates instance of search model using search inputs (if any)
             CarSearchModel searchModel = new CarSearchModel
             {
                 VIN = vin,
@@ -54,14 +38,14 @@ namespace CarAPI.Controllers
             return FindCars(searchModel);
         }
 
-
-        // GET car by search criteria (make, model, color, year range)
-        //this one is a work in progress and might not actually work how I want it to
+        // GET car by search criteria (using search model)
         [HttpGet]
         public List<Car> FindCars(CarSearchModel searchModel)
-        {
+        {//takes search model, makes instance of another class CarSearch, 
+         //and uses a method in the class to return a list of cars that 
+         //fit the search criteria
             var search = new CarSearch();
-            var list = search.FindCars(searchModel).ToList();
+            var list = search.SearchCars(searchModel).ToList();
             return list;
         }
     }

@@ -17,19 +17,21 @@ namespace CarApplication.Controllers
         [HttpGet]
         public ActionResult GetCars()
         {
-            HttpWebRequest request = WebRequest.CreateHttp("http://localhost:53205/api/Car/GetCars");
-            request.UserAgent = userAgent;
-            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-
-            if (response.StatusCode == HttpStatusCode.OK)
+            if (ViewBag.CarList == null) //only runs if bag is empty 
             {
-                StreamReader data = new StreamReader(response.GetResponseStream());
+                HttpWebRequest request = WebRequest.CreateHttp("http://localhost:53205/api/Car/GetCars");
+                request.UserAgent = userAgent;
+                HttpWebResponse response = (HttpWebResponse)request.GetResponse();
 
-                string jsonData = data.ReadToEnd();
-                JObject carData = JObject.Parse("{cars:" + jsonData + "}");
-                ViewBag.CarList = carData;
+                if (response.StatusCode == HttpStatusCode.OK)
+                {
+                    StreamReader data = new StreamReader(response.GetResponseStream());
+
+                    string jsonData = data.ReadToEnd();
+                    JObject carData = JObject.Parse("{cars:" + jsonData + "}");
+                    ViewBag.CarList = carData;
+                }
             }
-
             return View();
         }
 
@@ -45,29 +47,6 @@ namespace CarApplication.Controllers
         public ActionResult FoundCars()
         {
             return View();
-        }
-
-        // GET car by VIN
-        [HttpGet]
-        public ActionResult GetCarByVIN(string VIN)
-        {
-            if (VIN == null) { VIN = ""; }
-            HttpWebRequest request = WebRequest.CreateHttp($"http://localhost:53205/api/Car/GetCarByVIN?VIN={VIN}");
-            request.UserAgent = userAgent;
-            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-
-            if (response.StatusCode == HttpStatusCode.OK)
-            {
-                StreamReader data = new StreamReader(response.GetResponseStream());
-                string jsonData = data.ReadToEnd();
-                if (jsonData != "null")
-                {
-                    JObject car = JObject.Parse("{cars:" + jsonData + "}");
-                    ViewBag.FoundCarList = car;
-                }
-            }
-
-            return View("FoundCars");
         }
 
         // GET car through any search criteria

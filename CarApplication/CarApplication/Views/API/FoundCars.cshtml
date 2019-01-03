@@ -1,30 +1,35 @@
-﻿
-<h2>Cars Found</h2>
+﻿<div>
+    <h2>Cars Found</h2>
+</div>
 
 @if (ViewBag.FoundCarList != null)
 {
-<h4>Here are the cars found according to your search criteria:</h4>
+<div>
+    <h4>Here are the cars found according to your search criteria:</h4>
     <p></p>
-<table>
-    <tr>
-        <th>Year:</th>
-        <th>Make:</th>
-        <th>Model:</th>
-        <th>Color:</th>
-        <th>VIN:</th>
-    </tr>
-    @foreach (var car in ViewBag.FoundCarList["cars"])
-    {
-        <tr>
-            <td>@car["Year"]</td>
-            <td>@car["Make"]</td>
-            <td>@car["Model"]</td>
-            <td>@car["Color"]</td>
-            <td>@car["VIN"]</td>
+</div>
+<div class="table">
+    <table class="table-bordered">
+        <tr class="">
+            <th class="col-sm-2">Year:</th>
+            <th class="col-sm-2">Make:</th>
+            <th class="col-sm-2">Model:</th>
+            <th class="col-sm-2">Color:</th>
+            <th class="col-sm-2">VIN:</th>
         </tr>
-    }     
-    
-</table>
+        @foreach (var car in ViewBag.FoundCarList["cars"])
+        {
+            <tr class="">
+                <td class="col-sm-2">@car["Year"]</td>
+                <td class="col-sm-2">@car["Make"]</td>
+                <td class="col-sm-2">@car["Model"]</td>
+                <td class="col-sm-2">@car["Color"]</td>
+                <td class="col-sm-2">@car["VIN"]</td>
+            </tr>
+        }
+
+    </table>
+</div>
 <h5>Search again?</h5>
 }
 @if (ViewBag.FoundCarList == null)
