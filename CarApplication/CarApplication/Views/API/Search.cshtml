@@ -1,0 +1,34 @@
+﻿
+<h2>Search</h2>
+
+<form action="~/API/FindCars" method="get">
+    <label>Search by:</label>
+    <fieldset>
+        <label>Make:</label>
+        <select name="Make" id="chooseMake">
+            <option value="" disabled selected>Choose make...</option>
+            <option value="Ford">Ford</option>
+            <option value="Lincoln">Lincoln</option>
+            <option value="Mercury">Mercury</option>
+        </select>
+    </fieldset>
+    <fieldset>
+        <label>Model:</label>
+        <input type="text" name="Model" placeholder="Choose model..." />
+    </fieldset>
+    <fieldset>
+        <label>Year From:</label>
+        <input type="number" name="YearFrom" />
+        <label>Year To:</label>
+        <input type="number" name="YearTo" />
+    </fieldset>
+    <fieldset>
+        <label>Color:</label>
+        <input type="text" name="Color" placeholder="Choose color..." />
+    </fieldset>
+    <fieldset>
+        <label>VIN:</label>
+        <input type="text" name="VIN" placeholder="Vehicle Identification #"/>
+    </fieldset>
+    <input type="submit" value="Search" />
+</form>

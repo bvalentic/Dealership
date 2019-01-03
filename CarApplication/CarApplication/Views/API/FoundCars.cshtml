@@ -1,0 +1,36 @@
+﻿
+<h2>Cars Found</h2>
+
+@if (ViewBag.FoundCarList != null)
+{
+<h4>Here are the cars found according to your search criteria:</h4>
+    <p></p>
+<table>
+    <tr>
+        <th>Year:</th>
+        <th>Make:</th>
+        <th>Model:</th>
+        <th>Color:</th>
+        <th>VIN:</th>
+    </tr>
+    @foreach (var car in ViewBag.FoundCarList["cars"])
+    {
+        <tr>
+            <td>@car["Year"]</td>
+            <td>@car["Make"]</td>
+            <td>@car["Model"]</td>
+            <td>@car["Color"]</td>
+            <td>@car["VIN"]</td>
+        </tr>
+    }     
+    
+</table>
+<h5>Search again?</h5>
+}
+@if (ViewBag.FoundCarList == null)
+{
+    <h4>I'm sorry, we couldn't find any cars with that search criteria.</h4>
+    <h5>Would you like to try again?</h5>
+    
+}
+    <a href="~/API/Search" class="btn btn-default">Search cars</a>

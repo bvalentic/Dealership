@@ -1,0 +1,29 @@
+﻿
+@{
+    ViewBag.Title = "Car List";
+}
+
+<h2>Car List</h2>
+
+<h4>The cars currently available at the dealership:</h4>
+
+<table>
+    <tr>
+        <th>Year:</th>
+        <th>Make:</th>
+        <th>Model:</th>
+        <th>Color:</th>
+        <th>VIN:</th>
+    </tr>
+    @foreach (var i in ViewBag.CarList["cars"])
+    {
+        <tr>
+            <td>@i["Year"]</td>
+            <td>@i["Make"]</td>
+            <td>@i["Model"]</td>
+            <td>@i["Color"]</td>
+            <td>@i["VIN"]</td>
+        </tr>
+    }
+</table>
+
