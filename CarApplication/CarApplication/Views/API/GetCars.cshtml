@@ -9,15 +9,16 @@
 {
 
 <h4>The cars currently available at the dealership:</h4>
+<p>Click a header to sort by that value (year, model name, etc.)</p>
 
 <div class="table col-sm-6">
-    <table class="table-bordered col-lg-6">
+    <table class="table-bordered col-lg-6" id="carTable">
         <tr class="">
-            <th class="col-sm-1">Year:</th>
-            <th class="col-sm-1">Make:</th>
-            <th class="col-sm-2">Model:</th>
-            <th class="col-sm-1">Color:</th>
-            <th class="col-sm-1">VIN:</th>
+            <th class="col-sm-1" onclick="SortTable(0)">Year:</th>
+            <th class="col-sm-1" onclick="SortTable(1)">Make:</th>
+            <th class="col-sm-2" onclick="SortTable(2)">Model:</th>
+            <th class="col-sm-1" onclick="SortTable(3)">Color:</th>
+            <th class="col-sm-1" onclick="SortTable(4)">VIN:</th>
         </tr>
         @foreach (var car in ViewBag.CarList["cars"])
         {
@@ -39,5 +40,8 @@
     <h4>We're sorry! Something went wrong with our database.</h4>
     <h5>Please try again at a later time.</h5>
 }
+<div>
+    <a href="~/Home/Index">Back to home</a>
+</div>
 
-<a href="~/Home/Index">Back to home</a>
+<script src="~/Scripts/JavaScript.js"></script>

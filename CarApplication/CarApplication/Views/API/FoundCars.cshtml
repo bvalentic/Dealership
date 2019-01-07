@@ -6,16 +6,16 @@
 {
 <div>
     <h4>Here are the cars found according to your search criteria:</h4>
-    <p></p>
+    <p>Click a header to sort by that value (year, model name, etc.)</p>
 </div>
 <div class="table">
-    <table class="table-bordered">
+    <table class="table-bordered" id="carTable">
         <tr class="">
-            <th class="col-sm-2">Year:</th>
-            <th class="col-sm-2">Make:</th>
-            <th class="col-sm-2">Model:</th>
-            <th class="col-sm-2">Color:</th>
-            <th class="col-sm-2">VIN:</th>
+            <th class="col-sm-2" onclick="SortTable(0)">Year:</th>
+            <th class="col-sm-2" onclick="SortTable(1)">Make:</th>
+            <th class="col-sm-2" onclick="SortTable(2)">Model:</th>
+            <th class="col-sm-2" onclick="SortTable(3)">Color:</th>
+            <th class="col-sm-2" onclick="SortTable(4)">VIN:</th>
         </tr>
         @foreach (var car in ViewBag.FoundCarList["cars"])
         {
@@ -37,5 +37,8 @@
     <h4>We're sorry, we couldn't find any cars with that search criteria.</h4>
     <h5>Would you like to try again?</h5>
     
-}
+}<div>
     <a href="~/API/Search" class="btn btn-default">Search cars</a>
+</div>
+
+<script src="~/Scripts/JavaScript.js"></script>
